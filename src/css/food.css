@@ -1,0 +1,283 @@
+/* CSS Food */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f6f2ef;
+}
+/* Common Menu Heading */
+.menu-heading {
+  font-size: 2.5rem;
+  font-family: 'Inter', sans-serif; /* Clean modern font */
+  text-align: center;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 70px;
+  color: #3d4d46; /* Neutral professional color */
+  letter-spacing: 0.5px;
+}
+
+/* Vegetarian and Non-Veg Specific Colors */
+.veg-heading {
+  color: #4c8a5d; /* Soft green */
+}
+
+.nonveg-heading {
+  color: #b14343; /* Rich maroon/red */
+}
+
+.menu {
+  font-size: 3rem; 
+  text-align: center;
+  font-family: 'Inter';
+  color: #819A91;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+/* FORCE 3-COLUMN LAYOUT ON LARGER SCREENS */
+.menu-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 120px;
+  padding: 20px 60px;
+  background: linear-gradient(135deg, #f6f2ef, #f6f2ef);
+  min-height: 100vh;
+  place-items: center;
+  
+}
+.menu-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #f6f2ef;
+  padding: 6px 12px;
+  border-radius: 10px;
+  z-index: 3;
+}
+
+
+.menu-flip-card {
+  width: 100%;
+  height: 500px;
+  perspective: 1000px;
+}
+
+.menu-flip-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+
+.menu-flip-card:hover .menu-flip-inner {
+  transform: rotateY(180deg);
+}
+.menu-flip-card h2{
+     position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 10px;
+  z-index: 3;
+  text-align: center;
+}
+
+.menu-flip-front,
+.menu-flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  box-shadow: #819A91;
+  background: linear-gradient(135deg, #84a297, #8ba69c);
+  border: 4px double #819A91;
+  padding: 0px;
+  overflow-y: auto;
+}
+
+.menu-flip-front {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* 🔄 Add this */
+}
+
+.menu-flip-back {
+  transform: rotateY(180deg);
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+}
+
+.menu-image.back-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.back-overlay {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 20px;
+  overflow-y: auto;
+  color: #faece3;
+  font-weight: 500;
+}
+
+.menu-image {
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 0; /* 🔄 Remove margin if not needed */
+}
+.menu-card h2,
+.menu-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #819A91;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+.menu-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
+
+}
+
+.menu-items li {
+  font-size: 1.3rem;
+  color: #faece3;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+/* === Tablets (max-width: 1024px) === */
+@media screen and (max-width: 1024px) {
+  .menu-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+    padding: 20px 40px;
+  }
+
+  .menu-flip-card {
+    height: 450px;
+  }
+
+  .menu-image {
+       height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .menu-flip-card h2 {
+    font-size: 1.3rem;
+    top: -12%;
+  }
+
+  .menu-items li {
+    font-size: 1.2rem;
+  }
+}
+
+/* === Mobiles (max-width: 768px) === */
+@media screen and (max-width: 768px) {
+  .menu-grid-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 20px 20px;
+  }
+
+  .menu-flip-card {
+    height: 400px;
+  }
+
+  .menu-image {
+      height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .menu {
+    font-size: 2.2rem;
+  }
+
+  .head, .title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .menu-flip-card h2 {
+    font-size: 1.1rem;
+    top: -10%;
+  }
+
+  .menu-items li {
+    font-size: 1.1rem;
+  }
+}
+
+/* === Small Mobiles (max-width: 480px) === */
+@media screen and (max-width: 480px) {
+  .menu-grid-container {
+    padding: 15px;
+    gap: 30px;
+  }
+
+  .menu-flip-card {
+    height: 400px;
+  }
+
+  .menu-image {
+      height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .menu {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+
+  .head, .title {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  .menu-flip-card h2 {
+    font-size: 1rem;
+    top: -8%;
+  }
+
+  .menu-items li {
+    font-size: 1rem;
+  }
+
+  .back-overlay {
+    padding: 15px;
+  }
+}

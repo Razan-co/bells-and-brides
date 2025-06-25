@@ -1,0 +1,295 @@
+html {
+  scroll-behavior: smooth;
+}
+body{
+  background-color: #f6f2ef;
+  overflow-y: scroll;
+}
+.about-head .title {
+  font-size: 3rem; 
+  text-align: center;
+  font-family: 'Inter';
+  color: #819A91;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  width: 100%;
+}
+.about{
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #f6f2ef;
+}
+.a1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 30px;
+  align-items: stretch;
+}
+
+.about-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Keeps image proportional and fills container */
+  border-radius: 10px;
+}
+.a2 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+
+
+.about-head h1 {
+  text-align: center;
+  font-size: 3rem; 
+  text-align: center;
+  /* font-family: 'Sevillana', cursive; */
+  margin-bottom: 20px;
+  margin: 0;
+  padding-top: 2rem;
+}
+
+.about-head h3 {
+  font-size: 2rem;
+  margin-top: 30px;
+}
+
+.about-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #819A91  ;
+}
+
+.about-team {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.team-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #819A91;
+}
+
+.team-cards {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.team-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  width: 220px;
+}
+
+.team-card img {
+  width: 100%;
+  border-radius: 10px;
+  height: 220px;
+  object-fit: cover;
+  margin-bottom: 0.8rem;
+}
+
+.team-card h4 {
+  margin: 0.5rem 0 0.2rem;
+  color: #4a6462;
+}
+
+.team-card p {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.about-awards {
+  margin-top: 4rem;
+  background: linear-gradient(135deg, #faece3, #f8eee8);
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.awards-title {
+  font-size: 2rem;
+  color: #819A91;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-family: 'Cinzel', serif;
+}
+
+.awards-list {
+  list-style: none;
+  padding: 0 1rem;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.awards-list li {
+  font-size: 1rem;
+  color: #555;
+  padding-left: 1.8rem;
+  position: relative;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.awards-list li::before {
+  content: "🏆";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-size: 1.2rem;
+}
+
+.about-values {
+  margin-top: 4rem;
+  background-color: #fdf6ec;
+  padding: 2.5rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+.values-title {
+  font-size: 2rem;
+  color: #819A91;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: 'Cinzel', serif;
+}
+
+.values-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.value-box {
+  background: #fff;
+  color: #4a6462;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  font-weight: bold;
+  font-size: 1rem;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.value-box:hover {
+  transform: translateY(-6px);
+  background-color: #fdf3e9;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* For large tablets and smaller laptops (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  .a1 {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 20px;
+    justify-items: center; /* ✅ This will center the image */
+    text-align: center;
+  }
+
+  .about-head h1 {
+    font-size: 2.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .about-content {
+    font-size: 1rem;
+  }
+
+  .about-img img {
+    max-height: 400px;
+    object-fit: contain;
+  }
+}
+
+/* For tablets and large phones (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .a1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    justify-items: center;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  .about-img img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .about-head h1 {
+    font-size: 2.2rem;
+  }
+
+  .about-content {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .a2 {
+    padding: 10px;
+  }
+}
+
+/* For mobile devices (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .about {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .about-head h1 {
+    font-size: 2rem;
+    padding-top: 1rem;
+  }
+
+  .about-content {
+    font-size: 0.9rem;
+  }
+
+  .about-img img {
+    width: 90%;
+    max-width: 280px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+
+  .a2 {
+    padding: 5px;
+  }
+}
+
+/* For very small devices (max-width: 360px) */
+@media screen and (max-width: 360px) {
+  .about-head h1 {
+    font-size: 1.8rem;
+  }
+
+  .about-content {
+    font-size: 0.85rem;
+  }
+
+  .about-img img {
+    width: 100%;
+    max-width: 240px;
+  }
+}

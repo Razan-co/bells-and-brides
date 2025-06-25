@@ -1,0 +1,213 @@
+/* General Section */
+.portfolio {
+  background: #f6f2ef;
+  padding: 4rem 2rem;
+  overflow: hidden;
+}
+
+.portfolio-title {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 3rem;
+  color: #819A91;
+}
+
+/* Grid Layout */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+}
+
+.portfolio-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.portfolio-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.portfolio-card:hover .portfolio-img {
+  transform: scale(1.1);
+}
+
+.portfolio-overlay {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(137, 147, 143, 0.8);
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+  transition: bottom 0.5s ease;
+}
+
+.portfolio-card:hover .portfolio-overlay {
+  bottom: 0;
+}
+
+.portfolio-overlay h3 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.portfolio-overlay p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Video Section */
+.video-section {
+  display: flex;
+  gap: 3rem;
+  padding: 4rem 2rem;
+  background-color: #fdf7f1;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.video-container {
+  flex: 1 1 45%;
+  max-width: 600px;
+}
+
+.video-container video {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+.video-content {
+  flex: 1 1 45%;
+  color: #819A91;
+  font-family: 'Poppins', sans-serif;
+}
+
+.video-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.video-content p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.video-content ul {
+  list-style: disc inside;
+  line-height: 1.7;
+}
+
+/* Why Choose Us Section */
+.why-choose-section {
+  margin-top: 4rem;
+  padding: 3rem 2rem;
+  background-color: #faece3;
+  text-align: center;
+  border-radius: 16px;
+}
+
+.why-choose-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #819A91;
+}
+
+.why-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.why-box {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  width: 280px;
+}
+
+.why-box h3 {
+  margin-bottom: 1rem;
+  color: #819A91;
+}
+
+.why-box p {
+  font-size: 0.95rem;
+  color: #819A91;
+}
+
+/* Testimonials Section */
+.testimonial-section {
+  padding: 4rem 2rem;
+  background-color: #fdfaf6;
+  text-align: center;
+  border-radius: 16px;
+  margin-top: 4rem;
+}
+
+.testimonial-title {
+  font-size: 2.2rem;
+  color: #819A91;
+  margin-bottom: 2.5rem;
+}
+
+.testimonial-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.testimonial-card {
+  background-color: #ffffff;
+  padding: 2rem;
+  max-width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  font-style: italic;
+  color: #819A91;
+}
+
+.testimonial-card h4 {
+  margin-top: 1rem;
+  font-style: normal;
+  font-weight: bold;
+  color: #819A91;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .video-section,
+  .why-grid,
+  .testimonial-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .portfolio-title {
+    font-size: 2rem;
+  }
+
+  .video-content h2,
+  .why-choose-section h2,
+  .testimonial-title {
+    font-size: 1.6rem;
+  }
+
+  .why-box,
+  .testimonial-card {
+    width: 90%;
+  }
+}
