@@ -50,7 +50,7 @@ export default function Homepage() {
 
   useEffect(() => {
     AOS.init({
-      duration: 3000,
+      duration: 500,
       easing: 'ease-in-out',
       once: false,
       mirror: true,

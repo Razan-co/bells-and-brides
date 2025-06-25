@@ -5,7 +5,7 @@ import '../css/portfolio.css';
 
 export default function Portfolio() {
   useEffect(() => {
-    AOS.init({ duration: 1200, once: true, easing: 'ease-in-out' });
+    AOS.init({ duration: 1000, once: true, easing: 'ease-in-out' });
   }, []);
 
   const items = [
