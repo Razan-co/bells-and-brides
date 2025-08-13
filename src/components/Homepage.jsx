@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "../css/main.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 
 const pages = [
   {
@@ -255,13 +256,13 @@ export default function Homepage() {
             <h3>Quick Links</h3>
             <ul>
               <li>
-                <a href="/about">About Us</a>
+                <Link to="/about">About Us</Link>
               </li>
               <li>
-                <a href="/services">Our Services</a>
+                <Link to="/services">Our Services</Link>
               </li>
               <li>
-                <a href="/contact">Contact</a>
+                <Link to="/contact">Contact</Link>
               </li>
             </ul>
           </div>
