@@ -8,17 +8,17 @@ const pages = [
     title: "WELCOME TO BELLS AND BRIDES",
     content:
       "At BELLS & BRIDES we believe your wedding should reflect your unique love story...",
-    video: "/asset/one slide.mp4",
+    video: "/asset/0_Wedding_Bride_3840x2160 (1).mov",
   },
   {
     title: "CATERING",
     content: "Our catering services are designed to delight your guests...",
-    video: "/asset/Catering.mp4",
+    video: "/asset/0_Wedding_Banquet_Hall_3840x2160 (1).mp4",
   },
   {
     title: "PHOTOGRAPHY",
     content: "Ready to start planning your dream wedding?",
-    video: "/asset/photo.mp4",
+    video: " /asset/1667107_Hindu_Marriage_Chennaibride_1920x1080.mp4",
   },
 ];
 
@@ -104,7 +104,7 @@ export default function Homepage() {
           </p>
         </div>
         <div className="event-image" data-aos="fade-left">
-          <img src="/asset/event management.jpg" alt="Event Management" />
+          <img src="/asset/south-indian-wedding-featuring-happy-bride-groom.jpg" alt="Event Management" />
         </div>
       </div>
 
@@ -114,7 +114,7 @@ export default function Homepage() {
         <div className="service-card flip-card" data-aos="zoom-in">
           <div className="flip-inner">
             <div className="flip-front">
-              <img src="/asset/elegant decor.jpg" alt="Elegant Decor" />
+              <img src="/asset/selective-focus-on-the-colorful-stage-decoration-w-2024-09-12-09-29-53-utc.jpg" alt="Elegant Decor" />
             </div>
             <div className="flip-back">
               <h3>Elegant Decor</h3>

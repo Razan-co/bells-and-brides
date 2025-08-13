@@ -24,17 +24,17 @@ export default function ServicesSection() {
     },
     {
       title: 'Wedding Planning',
-      image: '/asset/wedding.jpg',
+      image: '/asset/traditional-indian-wedding-ceremony-groom-bride-hand.jpg',
       description: 'From intimate ceremonies to grand celebrations, we plan every detail for a flawless wedding day.',
     },
     {
       title: 'Reception Coordination',
-      image: '/asset/Reception.jpg',
+      image: '/asset/joyful-indian-couple-dancing-together-in-festive-h-2025-07-06-06-50-54-utc (1).jpeg',
       description: 'Celebrate your union with a stunning reception tailored to your tastes and traditions.',
     },
     {
       title: 'Catering Services',
-      image: '/asset/Catering.jpg',
+      image: '/asset/people-savoring-indian-spicy-food-served-on-banana-2025-03-07-23-51-13-utc.jpg',
       description: 'Delight your guests with gourmet catering and bespoke menu options crafted by expert chefs.',
     },
     {
@@ -44,7 +44,7 @@ export default function ServicesSection() {
     },
     {
       title: 'Decor & Styling',
-      image: '/asset/Decorations.jpg',
+      image: '/asset/outdoor-wedding-stage-adorned-with-chairs-flowers-2025-02-11-19-43-08-utc.jpg',
       description: 'Create enchanting event spaces with our custom decor, lighting, and floral styling.',
     },
   ];

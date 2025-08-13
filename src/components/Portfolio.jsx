@@ -9,7 +9,7 @@ export default function Portfolio() {
   }, []);
 
   const items = [
-    { src: '/asset/portfolio1.jpg', title: 'Elegant Wedding Setup', desc: 'Stunning floral arrangements at a lakeside venue.' },
+    { src: '/asset/selective-focus-on-the-colorful-stage-decoration-w-2024-09-12-09-29-53-utc.jpg', title: 'Elegant Wedding Setup', desc: 'Stunning floral arrangements at a lakeside venue.' },
     { src: '/asset/portfolio2.jpg', title: 'Corporate Gala Evening', desc: 'Ambient lighting with modern table decor.' },
     { src: '/asset/portfolio3.jpg', title: 'Grand Birthday Celebration', desc: 'Themed setup with vibrant balloon wall backdrop.' },
     { src: '/asset/portfolio4.jpg', title: 'Destination Beach Wedding', desc: 'Sunset ceremony with boho-chic decor.' },
