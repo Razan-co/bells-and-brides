@@ -1,18 +1,67 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../css/portfolio.css';
 
 export default function Portfolio() {
+    const videoRef = useRef(null);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true, easing: 'ease-in-out' });
+
+    // Lazy-load video when in viewport
+    const video = videoRef.current;
+    const source = video.querySelector('source');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            source.src =
+              'https://res.cloudinary.com/dwj7qkkvp/video/upload/f_auto,q_auto/portfolio-video_j4f9eu.mp4';
+            video.load();
+            video.play().catch(() => {
+              // handle autoplay blocked in some browsers
+            });
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.25 } // load when 25% of video is visible
+    );
+
+    observer.observe(video);
+  }, []);
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true, easing: 'ease-in-out' });
   }, []);
 
   const items = [
-    { src: '/asset/selective-focus-on-the-colorful-stage-decoration-w-2024-09-12-09-29-53-utc.jpg', title: 'Elegant Wedding Setup', desc: 'Stunning floral arrangements at a lakeside venue.' },
-    { src: '/asset/portfolio2.jpg', title: 'Corporate Gala Evening', desc: 'Ambient lighting with modern table decor.' },
-    { src: '/asset/portfolio3.jpg', title: 'Grand Birthday Celebration', desc: 'Themed setup with vibrant balloon wall backdrop.' },
-    { src: '/asset/portfolio4.jpg', title: 'Destination Beach Wedding', desc: 'Sunset ceremony with boho-chic decor.' },
+    {
+      // src: '/asset/selective-focus-on-the-colorful-stage-decoration-w-2024-09-12-09-29-53-utc.jpg',
+      src: 'https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758619264/selective-focus-on-the-colorful-stage-decoration-w-2024-09-12-09-29-53-utc_biwwvo.jpg',
+      title: 'Elegant Wedding Setup',
+      desc: 'Stunning floral arrangements at a lakeside venue.'
+    },
+    {
+      // src: '/asset/portfolio2.jpg',
+      src: 'https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614434/portfolio2_w5sf3a.jpg',
+      title: 'Corporate Gala Evening',
+      desc: 'Ambient lighting with modern table decor.'
+    },
+    {
+      src: 'https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614441/portfolio3_wb3lgf.jpg',
+      // src: '/asset/portfolio3.jpg',
+      title: 'Grand Birthday Celebration',
+      desc: 'Themed setup with vibrant balloon wall backdrop.'
+    },
+    {
+      src: 'https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614440/portfolio4_db4tzp.jpg',
+      // src: '/asset/portfolio4.jpg', 
+      title: 'Destination Beach Wedding',
+      desc: 'Sunset ceremony with boho-chic decor.'
+    },
   ];
 
   return (
@@ -34,8 +83,18 @@ export default function Portfolio() {
 
       {/* Video Section */}
       <div className="video-section">
-        <div className="video-container" data-aos="fade-right">
-          <video src="/asset/portfolio-video.mp4" controls autoPlay muted loop />
+       <div className="video-container" data-aos="fade-right">
+          <video
+            ref={videoRef}
+            muted
+            loop
+            playsInline
+            preload="none"
+            poster="https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/portfolio-video-thumbnail.jpg"
+          >
+            <source type="video/mp4" />
+            Sorry, your browser doesn’t support embedded videos.
+          </video>
         </div>
         <div className="video-content" data-aos="fade-left">
           <h2>Immersive Experiences</h2>

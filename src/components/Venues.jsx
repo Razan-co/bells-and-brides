@@ -10,10 +10,10 @@ import Delhi from './Delhi';
 import Mumbai from './Mumbai';
 
 const data = [
-  { name: "Chennai", image: "/asset/Chennai.jpg" },
-  { name: "Bangalore", image: "/asset/Bangalore.webp" },
-  { name: "Mumbai", image: "/asset/Mumbai.jpg" },
-  { name: "Delhi", image: "/asset/Delhi.webp" },
+  { name: "Chennai", image: "https://res.cloudinary.com/dwj7qkkvp/image/upload/v1758614326/Chennai_awthid.jpg" },
+  { name: "Bangalore", image: "https://res.cloudinary.com/dwj7qkkvp/image/upload/v1758614262/Bangalore_vnia9x.webp" },
+  { name: "Mumbai", image: "https://res.cloudinary.com/dwj7qkkvp/image/upload/v1758614262/Mumbai_bpl645.jpg" },
+  { name: "Delhi", image: "https://res.cloudinary.com/dwj7qkkvp/image/upload/v1758614330/Delhi_qj0yhr.webp" },
 ];
 
 export default function Venues() {

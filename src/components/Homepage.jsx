@@ -7,75 +7,112 @@ import { Link } from "react-router-dom";
 const pages = [
   {
     title: "WELCOME TO BELLS AND BRIDES",
-    content:
-      "At BELLS & BRIDES we believe your wedding should reflect your unique love story...",
-    video: "/asset/0_Wedding_Bride_3840x2160 (1).mov",
+    content: "At BELLS & BRIDES we believe your wedding should reflect your unique love story...",
+    video: "https://res.cloudinary.com/dwj7qkkvp/video/upload/f_auto,q_auto/v1758622572/0_Wedding_Bride_3840x2160_1_1_online-video-cutter.com_xacign.mp4",
+    poster: "https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614440/portfolio4_db4tzp.jpg"
   },
   {
     title: "CATERING",
     content: "Our catering services are designed to delight your guests...",
-    video: "/asset/0_Wedding_Banquet_Hall_3840x2160 (1).mp4",
+    video: "https://res.cloudinary.com/dwj7qkkvp/video/upload/f_auto,q_auto/v1758622569/0_Wedding_Banquet_Hall_3840x2160_1_online-video-cutter.com_yyz6el.mp4",
+   poster: "https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614445/Reception_tjl8xt.jpg"
   },
   {
     title: "PHOTOGRAPHY",
     content: "Ready to start planning your dream wedding?",
-    video: " /asset/1667107_Hindu_Marriage_Chennaibride_1920x1080.mp4",
+    video: "https://res.cloudinary.com/dwj7qkkvp/video/upload/f_auto,q_auto/v1758622571/1667107_Hindu_Marriage_Chennaibride_1920x1080_online-video-cutter.com_lnipgf.mp4",
+      poster: "https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614347/event_management_inmhxp.jpg"
   },
-];
+]
+
 
 const infinitePages = [...pages, ...pages];
 
 export default function Homepage() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const videoRefs = useRef([]);
+  const videoRef = useRef(null);
   const carouselRef = useRef(null);
 
+  // Carousel + Video effect
   useEffect(() => {
-    const currentVideo = videoRefs.current[currentIndex];
-    if (currentVideo) {
-      currentVideo.currentTime = 0;
-      currentVideo
-        .play()
-        .catch((e) => e.name !== "AbortError" && console.error(e));
-    }
+    AOS.init({ duration: 500, easing: "ease-in-out", once: false, mirror: true, offset: 100 });
 
+    const video = videoRef.current;
+    if (video) {
+      video.load(); // reload new video
+
+      const handleCanPlay = () => video.play().catch(() => {});
+      video.addEventListener("canplay", handleCanPlay);
+
+      return () => video.removeEventListener("canplay", handleCanPlay);
+    }
+  }, [currentIndex]);
+
+  // Carousel slide timer
+  useEffect(() => {
     const timer = setTimeout(() => {
-      let next = (currentIndex + 1) % infinitePages.length;
-      setCurrentIndex(next);
-      if (carouselRef.current) {
-        carouselRef.current.style.transition = "transform 1s ease-in-out";
-        carouselRef.current.style.transform = `translateX(-${next * 100}%)`;
-      }
+      setCurrentIndex((prev) => (prev + 1) % pages.length);
     }, 5000);
+
+    if (carouselRef.current) {
+      carouselRef.current.style.transition = "transform 1s ease-in-out";
+      carouselRef.current.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
 
     return () => clearTimeout(timer);
   }, [currentIndex]);
 
-  useEffect(() => {
-    AOS.init({
-      duration: 500,
-      easing: "ease-in-out",
-      once: false,
-      mirror: true,
-      offset: 100,
-    });
-  }, []);
+
+
+  // useEffect(() => {
+  //   AOS.init({ duration: 500, easing: "ease-in-out", once: false, mirror: true, offset: 100 });
+
+  //   const video = videoRef.current;
+  //   if (video) {
+  //     // Set current video src dynamically
+  //     video.src = pages[currentIndex].video;
+  //     video.poster = pages[currentIndex].poster;
+  //     video.load();
+  //     video.play().catch(() => { });
+
+  //     // Preload next video for smooth transition
+  //     const nextIndex = (currentIndex + 1) % pages.length;
+  //     const nextVideo = document.createElement("video");
+  //     nextVideo.src = pages[nextIndex].video;
+  //     nextVideo.preload = "auto";
+  //   }
+
+  //   const timer = setTimeout(() => {
+  //     setCurrentIndex((prev) => (prev + 1) % pages.length);
+  //     if (carouselRef.current) {
+  //       carouselRef.current.style.transition = "transform 1s ease-in-out";
+  //       carouselRef.current.style.transform = `translateX(-${currentIndex * 100}%)`;
+  //     }
+  //   }, 5000);
+
+  //   return () => clearTimeout(timer);
+  // }, [currentIndex]);
 
   return (
     <div className="carousel-wrapper">
-      <div className="carousel-container" ref={carouselRef}>
-        {infinitePages.map((page, idx) => (
+   <div className="carousel-container" ref={carouselRef}>
+        {pages.map((page, idx) => (
           <div className="carousel-slide" key={idx}>
             <div className="carousel-inner">
-              <video
-                className="background-video"
-                src={page.video}
-                ref={(el) => (videoRefs.current[idx] = el)}
-                muted
-                playsInline
-                loop
-                preload="auto"
-              />
+              {idx === currentIndex && (
+                <video
+                  ref={videoRef}
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  poster={page.poster}
+                  className="background-video"
+                >
+                  <source src={page.video} type="video/mp4" />
+                  Sorry, your browser doesn’t support embedded videos.
+                </video>
+              )}
               <div className="carousel-text" data-aos="fade-up">
                 <h1>{page.title}</h1>
                 <p>{page.content}</p>
@@ -99,81 +136,57 @@ export default function Homepage() {
           <p>
             At <strong>Bells & Brides</strong>, we go beyond weddings. From
             corporate galas to private parties and themed celebrations, our team
-            ensures every detail is planned to perfection. Whether it’s a rustic
-            outdoor evening or a luxury ballroom affair, we bring your vision to
-            life with style and sophistication.
+            ensures every detail is planned to perfection.
           </p>
         </div>
         <div className="event-image" data-aos="fade-left">
-          <img src="/asset/south-indian-wedding-featuring-happy-bride-groom.jpg" alt="Event Management" />
+          <img src="https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614478/south-indian-wedding-featuring-happy-bride-groom_dm7box.jpg" alt="Event Management" />
         </div>
       </div>
 
-      {/* Services */}
+      {/* Services Section */}
       <div className="services-section">
-        {/* Card 1 */}
         <div className="service-card flip-card" data-aos="zoom-in">
           <div className="flip-inner">
             <div className="flip-front">
-              <img src="/asset/selective-focus-on-the-colorful-stage-decoration-w-2024-09-12-09-29-53-utc.jpg" alt="Elegant Decor" />
+              <img src="https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758619264/selective-focus-on-the-colorful-stage-decoration-w-2024-09-12-09-29-53-utc_biwwvo.jpg" alt="Elegant Decor" />
             </div>
             <div className="flip-back">
               <h3>Elegant Decor</h3>
-              <p>
-                We transform venues into dreamy spaces with stunning floral,
-                lighting, and thematic designs.
-              </p>
+              <p>We transform venues into dreamy spaces with stunning floral, lighting, and thematic designs.</p>
             </div>
           </div>
           <h2>Elegant Decor</h2>
         </div>
 
-        {/* Card 2 */}
-        <div
-          className="service-card flip-card"
-          data-aos="zoom-in"
-          data-aos-delay="200"
-        >
+        <div className="service-card flip-card" data-aos="zoom-in" data-aos-delay="200">
           <div className="flip-inner">
             <div className="flip-front">
-              <img
-                src="/asset/live entertainment.jpg"
-                alt="Live Entertainment"
-              />
+              <img src="https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614369/live_entertainment_bwyxwd.jpg" alt="Live Entertainment" />
             </div>
             <div className="flip-back">
               <h3>Live Entertainment</h3>
-              <p>
-                From live bands to DJs and traditional acts, we curate
-                unforgettable entertainment.
-              </p>
+              <p>From live bands to DJs and traditional acts, we curate unforgettable entertainment.</p>
             </div>
           </div>
           <h2>Live Entertainment</h2>
         </div>
 
-        {/* Card 3 */}
-        <div
-          className="service-card flip-card"
-          data-aos="zoom-in"
-          data-aos-delay="400"
-        >
+        <div className="service-card flip-card" data-aos="zoom-in" data-aos-delay="400">
           <div className="flip-inner">
             <div className="flip-front">
-              <img src="/asset/live cordination.jpg" alt="Planning" />
+              <img src="https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614370/live_cordination_fj3x9h.jpg" alt="Planning" />
             </div>
             <div className="flip-back">
               <h3>Planning & Coordination</h3>
-              <p>
-                Our team handles logistics and timelines, ensuring stress-free
-                and smooth execution.
-              </p>
+              <p>Our team handles logistics and timelines, ensuring stress-free and smooth execution.</p>
             </div>
           </div>
           <h2>Planning & Coordination</h2>
         </div>
       </div>
 
+      {/* Why Choose Section */}
       <div className="why-choose" data-aos="fade-up">
         <h2>Why Choose Bells & Brides</h2>
         <div className="why-grid">
@@ -185,9 +198,7 @@ export default function Homepage() {
           <div className="why-item">
             <i className="fas fa-gem"></i>
             <h3>Luxury & Elegance</h3>
-            <p>
-              We bring sophisticated aesthetics to life through every detail.
-            </p>
+            <p>We bring sophisticated aesthetics to life through every detail.</p>
           </div>
           <div className="why-item">
             <i className="fas fa-calendar-check"></i>
@@ -197,35 +208,22 @@ export default function Homepage() {
         </div>
       </div>
 
+      {/* Testimonials Section */}
       <div className="testimonial-section" data-aos="fade-up">
         <h2>What Our Clients Say</h2>
         <div className="testimonial-cards">
           <div className="testimonial-card">
-            <p>
-              "Our wedding was like a dream. The Bells & Brides team made it
-              magical!"
-            </p>
+            <p>"Our wedding was like a dream. The Bells & Brides team made it magical!"</p>
             <h4>— Aarti & Karthik</h4>
           </div>
           <div className="testimonial-card">
-            <p>
-              "Impeccable planning, gorgeous decor, and seamless execution."
-            </p>
+            <p>"Impeccable planning, gorgeous decor, and seamless execution."</p>
             <h4>— Rina Thomas</h4>
           </div>
         </div>
       </div>
 
-      {/* <div className="gallery-section" data-aos="zoom-in">
-  <h2>Moments We Cherish</h2>
-  <div className="gallery-grid">
-    <img src="/asset/gallery1.jpg" alt="Event 1" />
-    <img src="/asset/gallery2.jpg" alt="Event 2" />
-    <img src="/asset/gallery3.jpg" alt="Event 3" />
-    <img src="/asset/gallery4.jpg" alt="Event 4" />
-  </div>
-</div> */}
-
+      {/* Stats Section */}
       <div className="stats-section" data-aos="fade-up">
         <div className="stats-grid">
           <div>
@@ -248,51 +246,31 @@ export default function Homepage() {
         <div className="footer-container">
           <div className="footer-left">
             <h2 className="footer-logo">Bells & Brides</h2>
-            <p className="footer-tagline">
-              Crafting unforgettable wedding moments with love and elegance.
-            </p>
+            <p className="footer-tagline">Crafting unforgettable wedding moments with love and elegance.</p>
           </div>
           <div className="footer-middle">
             <h3>Quick Links</h3>
             <ul>
-              <li>
-                <Link to="/about">About Us</Link>
-              </li>
-              <li>
-                <Link to="/services">Our Services</Link>
-              </li>
-              <li>
-                <Link to="/contact">Contact</Link>
-              </li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/services">Our Services</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
           <div className="footer-right">
             <h3>Connect with Us</h3>
             <div className="footer-icons">
               <div className="top-icons">
-                <a href="https://www.instagram.com/thebellsandbrides?igsh=eDJ1MG52NjlreDlp">
-                  <i className="fab fa-instagram"></i>
-
-                </a>
-                <a href="https://www.linkedin.com/in/thebells-nbrides-876203377?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
-                  <i className="fab fa-linkedin"></i>
-                </a>
+                <a href="https://www.instagram.com/thebellsandbrides"><i className="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/thebells-nbrides-876203377"><i className="fab fa-linkedin"></i></a>
               </div>
               <div className="bottom-icons">
-                <a href="#">
-                  <i className="fas fa-envelope"></i>{" "}
-                  thebellsandbrides@gmail.com
-                </a>
-                <a href="#">
-                  <i className="fas fa-phone"></i> 9840942784
-                </a>
+                <a href="#"><i className="fas fa-envelope"></i> thebellsandbrides@gmail.com</a>
+                <a href="#"><i className="fas fa-phone"></i> 9840942784</a>
               </div>
             </div>
           </div>
         </div>
-        <p className="footer-copy">
-          © 2025 Bells and Brides. All rights reserved.
-        </p>
+        <p className="footer-copy">© 2025 Bells and Brides. All rights reserved.</p>
       </footer>
     </div>
   );

@@ -19,32 +19,38 @@ export default function ServicesSection() {
   const services = [
     {
       title: 'Engagement Planning',
-      image: '/asset/Engagement.jpg',
+      // image: '/asset/Engagement.jpg',
+      image: 'https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614338/Engagement_hvsx4v.jpg',
       description: 'We design elegant, personalized engagement events that reflect your love story and style.',
     },
     {
       title: 'Wedding Planning',
-      image: '/asset/traditional-indian-wedding-ceremony-groom-bride-hand.jpg',
+      image: 'https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758620479/traditional-indian-wedding-ceremony-groom-bride-hand_bscsly.jpg',
+      // image: '/asset/traditional-indian-wedding-ceremony-groom-bride-hand.jpg',
       description: 'From intimate ceremonies to grand celebrations, we plan every detail for a flawless wedding day.',
     },
     {
       title: 'Reception Coordination',
-      image: '/asset/joyful-indian-couple-dancing-together-in-festive-h-2025-07-06-06-50-54-utc (1).jpeg',
+      image: 'https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758620632/joyful-indian-couple-dancing-together-in-festive-h-2025-07-06-06-50-54-utc_1_spiaxo.jpg',
+      // image: '/asset/joyful-indian-couple-dancing-together-in-festive-h-2025-07-06-06-50-54-utc (1).jpeg',
       description: 'Celebrate your union with a stunning reception tailored to your tastes and traditions.',
     },
     {
       title: 'Catering Services',
-      image: '/asset/people-savoring-indian-spicy-food-served-on-banana-2025-03-07-23-51-13-utc.jpg',
+      image: 'https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614389/people-savoring-indian-spicy-food-served-on-banana-2025-03-07-23-51-13-utc_jqypqx.jpg',
+      // image: '/asset/people-savoring-indian-spicy-food-served-on-banana-2025-03-07-23-51-13-utc.jpg',
       description: 'Delight your guests with gourmet catering and bespoke menu options crafted by expert chefs.',
     },
     {
       title: 'Photography & Videography',
-      image: '/asset/Photograph.jpg',
+      image: 'https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614401/Photograph_bzkrse.jpg',
+      // image: '/asset/Photograph.jpg',
       description: 'Capture unforgettable memories with professional photography and cinematic videography.',
     },
     {
       title: 'Decor & Styling',
-      image: '/asset/outdoor-wedding-stage-adorned-with-chairs-flowers-2025-02-11-19-43-08-utc.jpg',
+      image: 'https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758621178/outdoor-wedding-stage-adorned-with-chairs-flowers-2025-02-11-19-43-08-utc_rwjm5e.jpg',
+      // image: '/asset/outdoor-wedding-stage-adorned-with-chairs-flowers-2025-02-11-19-43-08-utc.jpg',
       description: 'Create enchanting event spaces with our custom decor, lighting, and floral styling.',
     },
   ];
