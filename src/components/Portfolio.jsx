@@ -90,7 +90,6 @@ export default function Portfolio() {
             loop
             playsInline
             preload="none"
-            poster="https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/portfolio-video-thumbnail.jpg"
           >
             <source type="video/mp4" />
             Sorry, your browser doesn’t support embedded videos.

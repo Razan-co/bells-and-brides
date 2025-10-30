@@ -3,7 +3,7 @@ import React from 'react';
 
 const chennai = [
 
-    // Banquets
+ 
 
   { name: "Sathyam Grand Resort", location: "Chennai",type:'Banquets'},
   { name: "Ramada Plaza Hotel", location: "Guindy, Chennai",type:'Banquets' },
@@ -39,7 +39,7 @@ const chennai = [
   { name: "Madharas Banquet Hall", location: "T Nagar, Chennai", type: 'Banquets' },
   { name: "Royal Radiance Luxury Banquet Hall", location: "T Nagar, Chennai", type: 'Banquets' },
   { name: "Chennai Convention Hall", location: "ECR, Chennai", type: 'Banquets' },
-  // Mahals
+
 
   { name: "Sree Ganesh Mahal Kalyana Mandapam", location: "Chennai",type:'Mahals'  },
   { name: "St. Lourdu Mahal & A.D.S. Party Hall", location: "Chennai",contact:"9791310333",type:'Mahals'  },
@@ -55,7 +55,7 @@ const chennai = [
   { name: "San Event Hall", location: "ECR, Kottivakkam, Chennai", type: 'Mahals' },
   { name: "VGP Pandian Hall", location: "ECR, Chennai", type: 'Mahals' },
   { name: "Chennai Convention Hall", location: "ECR, Chennai", type: 'Mahals' },
-  // Beach Venues
+ 
 
   { name: "Blue Bay Beach Resort", location: "East Coast Road Ecr, Chennai",type:'Beach Venues'  },
   { name: "Intercontinental", location: "Mahabalipuram" ,type:'Beach Venues' },

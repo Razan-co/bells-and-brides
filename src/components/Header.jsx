@@ -14,7 +14,7 @@ const Header = () => {
     <header id="mainHeader">
       <div className="head-grid">
         <div className="logo text-center">
-          <img src="/asset/logo-BB.png" width="500" height="100" alt="logo" />
+          <img src="/logo-BB.png" width="500" height="100" alt="logo" />
           
         </div>
     <div>
@@ -27,7 +27,7 @@ const Header = () => {
 
         <nav className={`nav ${menuOpen ? 'open' : ''}`}>
           <ol className="list-unstyled" id="link">
-            <li><Link to="/" onClick={handleLinkClick}><i className="fa-solid fa-house fa-lg"></i></Link></li>
+            <li><Link to="/home" onClick={handleLinkClick}><i className="fa-solid fa-house fa-lg"></i></Link></li>
             <li><Link to="/about" onClick={handleLinkClick}>ABOUT</Link></li>
             <li><Link to="/services" onClick={handleLinkClick}>SERVICES</Link></li>
             <li><Link to="/portfolio" onClick={handleLinkClick}>PORTFOLIO</Link></li>

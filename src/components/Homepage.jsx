@@ -8,20 +8,20 @@ const pages = [
   {
     title: "WELCOME TO BELLS AND BRIDES",
     content: "At BELLS & BRIDES we believe your wedding should reflect your unique love story...",
-    video: "https://res.cloudinary.com/dwj7qkkvp/video/upload/f_auto,q_auto/v1758622572/0_Wedding_Bride_3840x2160_1_1_online-video-cutter.com_xacign.mp4",
-    poster: "https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614440/portfolio4_db4tzp.jpg"
+    video: "/wedding.webm",
+
   },
   {
     title: "CATERING",
     content: "Our catering services are designed to delight your guests...",
-    video: "https://res.cloudinary.com/dwj7qkkvp/video/upload/f_auto,q_auto/v1758622569/0_Wedding_Banquet_Hall_3840x2160_1_online-video-cutter.com_yyz6el.mp4",
-   poster: "https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614445/Reception_tjl8xt.jpg"
+    video: "/hall.webm",
+  
   },
   {
     title: "PHOTOGRAPHY",
     content: "Ready to start planning your dream wedding?",
-    video: "https://res.cloudinary.com/dwj7qkkvp/video/upload/f_auto,q_auto/v1758622571/1667107_Hindu_Marriage_Chennaibride_1920x1080_online-video-cutter.com_lnipgf.mp4",
-      poster: "https://res.cloudinary.com/dwj7qkkvp/image/upload/f_auto,q_auto/v1758614347/event_management_inmhxp.jpg"
+    video: "/marriage.webm",
+    
   },
 ]
 
@@ -62,37 +62,6 @@ export default function Homepage() {
     return () => clearTimeout(timer);
   }, [currentIndex]);
 
-
-
-  // useEffect(() => {
-  //   AOS.init({ duration: 500, easing: "ease-in-out", once: false, mirror: true, offset: 100 });
-
-  //   const video = videoRef.current;
-  //   if (video) {
-  //     // Set current video src dynamically
-  //     video.src = pages[currentIndex].video;
-  //     video.poster = pages[currentIndex].poster;
-  //     video.load();
-  //     video.play().catch(() => { });
-
-  //     // Preload next video for smooth transition
-  //     const nextIndex = (currentIndex + 1) % pages.length;
-  //     const nextVideo = document.createElement("video");
-  //     nextVideo.src = pages[nextIndex].video;
-  //     nextVideo.preload = "auto";
-  //   }
-
-  //   const timer = setTimeout(() => {
-  //     setCurrentIndex((prev) => (prev + 1) % pages.length);
-  //     if (carouselRef.current) {
-  //       carouselRef.current.style.transition = "transform 1s ease-in-out";
-  //       carouselRef.current.style.transform = `translateX(-${currentIndex * 100}%)`;
-  //     }
-  //   }, 5000);
-
-  //   return () => clearTimeout(timer);
-  // }, [currentIndex]);
-
   return (
     <div className="carousel-wrapper">
    <div className="carousel-container" ref={carouselRef}>
@@ -106,10 +75,10 @@ export default function Homepage() {
                   loop
                   playsInline
                   preload="auto"
-                  poster={page.poster}
+                
                   className="background-video"
                 >
-                  <source src={page.video} type="video/mp4" />
+                 <source src={page.video} type="video/webm" />
                   Sorry, your browser doesn’t support embedded videos.
                 </video>
               )}
@@ -264,7 +233,7 @@ export default function Homepage() {
                 <a href="https://www.linkedin.com/in/thebells-nbrides-876203377"><i className="fab fa-linkedin"></i></a>
               </div>
               <div className="bottom-icons">
-                <a href="#"><i className="fas fa-envelope"></i> thebellsandbrides@gmail.com</a>
+                <a href="#"><i className="fas fa-envelope"></i> bellsandbridesofficial@gmail.com</a>
                 <a href="#"><i className="fas fa-phone"></i> 9840942784</a>
               </div>
             </div>

@@ -1,22 +1,58 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../css/contact.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 function Contact() {
+  const form = useRef();
+  const [sending, setSending] = useState(false);
+  const [resultMsg, setResultMsg] = useState('');
+
+  // ⚙️ Initialize AOS
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      offset: 100,
-      easing: 'ease-in-out',
-      once: true,
+    AOS.init({ duration: 1000, offset: 100, easing: 'ease-in-out', once: true });
+    document.body.classList.add('no-scroll');
+    return () => document.body.classList.remove('no-scroll');
+  }, []);
+
+  // 🚀 Replace EmailJS with Google Sheet submission
+// 🚀 Send data to Google Sheet (works with Apps Script + no CORS issue)
+const sendToGoogleSheet = async (e) => {
+  e.preventDefault();
+  setSending(true);
+  setResultMsg('');
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwL_9DyCoBlr5SP_K64W9M3vK1kP7IpfP4EMXHDD5orMdfKc7cSrlnjqcOguHnd8QKrfQ/exec';
+ const formData = {
+    name: form.current.name.value,
+    email: form.current.email.value,
+    phone: form.current.phone.value,
+    city: form.current.city.value,
+    message: form.current.message.value,
+  };
+
+  try {
+    const response = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors', // ✅ Important: lets browser send to Apps Script
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
     });
 
-    document.body.classList.add('no-scroll');
-    return () => {
-      document.body.classList.remove('no-scroll');
-    };
-  }, []);
+    // Even though no-cors hides response, data still saves
+    setResultMsg('✅ Message sent successfully!');
+    form.current.reset();
+  } catch (error) {
+    console.error('Error:', error);
+    setResultMsg('❌ Failed to send message. Please try again.');
+  } finally {
+    setSending(false);
+  }
+};
+
+
 
   return (
     <div className="no-scroll">
@@ -51,18 +87,34 @@ function Contact() {
             </div>
           </div>
 
-          {/* Right Side */}
-          <form className="contact-form" data-aos="fade-left" data-aos-delay="200">
+          {/* Right Side — Form */}
+          <form
+            ref={form}
+            onSubmit={sendToGoogleSheet}
+            className="contact-form"
+            data-aos="fade-left"
+            data-aos-delay="200"
+          >
             <div className="form-row">
-              <input type="text" placeholder="Your Name" />
-              <input type="email" placeholder="Your Email" />
+              <input type="text" name="name" placeholder="Your Name" required />
+              <input type="email" name="email" placeholder="Your Email" required />
             </div>
             <div className="form-row">
-              <input type="text" placeholder="Your Number" />
-              <input type="text" placeholder="Your City" />
+              <input type="text" name="phone" placeholder="Your Number" />
+              <input type="text" name="city" placeholder="Your City" />
             </div>
-            <textarea placeholder="Message" rows="5" />
-            <button type="submit" className="submit-btn" data-aos="zoom-in" data-aos-delay="300">Send Message</button>
+            <textarea name="message" placeholder="Message" rows="5" required />
+            <button
+              type="submit"
+              className="submit-btn"
+              data-aos="zoom-in"
+              data-aos-delay="300"
+              disabled={sending}
+            >
+              {sending ? 'Sending...' : 'Send Message'}
+            </button>
+
+            {resultMsg && <p className="result-msg">{resultMsg}</p>}
           </form>
         </div>
       </div>

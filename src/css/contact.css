@@ -12,11 +12,13 @@
 .title {
   font-size: 3rem;
   text-align: center;
-  font-family: 'Inter';
+  font-family: "Inter", sans-serif;
   color: #819A91;
   margin-top: 30px;
-  margin-bottom: 90px;
+  margin-bottom: 50px;
   width: 100%;
+  line-height: 1.2;
+  word-break: break-word;
 }
 
 .contact-container {
@@ -102,6 +104,18 @@ textarea {
   transform: scale(1.05);
 }
 
+.result-msg {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 15px;
+  color: #555;
+}
+
+.submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
 /* AOS Mobile Tweaks */
 @media (max-width: 768px) {
   [data-aos] {
@@ -125,6 +139,11 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+    .title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+  }
+
   .contact-form {
     max-width: 100%;
     padding: 15px 30px;
@@ -142,7 +161,12 @@ textarea {
 
 @media (max-width: 640px) {
   .contact-section {
-    padding: 15px 30px;
+    padding: 20px 20px 50px 25px;
+  }
+
+    .title {
+    font-size: 2rem;
+    margin-bottom: 35px;
   }
 
   .contact-container {
@@ -162,6 +186,10 @@ textarea {
 @media (max-width: 350px) {
   .contact-container {
     gap: 10px;
+  }
+    .title {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
   }
 
   .contact-form input,

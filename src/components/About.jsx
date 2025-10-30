@@ -70,22 +70,6 @@ export default function About() {
         </div>
       </div>
 
-      {/* <div className="about-team" data-aos="fade-up">
-  <h3 className="team-title">Meet Our Founders</h3>
-  <div className="team-cards">
-    <div className="team-card">
-      <img src="/asset/founder1.jpg" alt="Founder" />
-      <h4>********</h4>
-      <p>Creative Director</p>
-    </div>
-    <div className="team-card">
-      <img src="/asset/founder2.jpg" alt="Co-Founder" />
-      <h4>*******</h4>
-      <p>Event Strategist</p>
-    </div>
-  </div>
-</div> */}
-
       <div className="about-awards" data-aos="zoom-in">
         <h3 className="awards-title">Recognitions</h3>
         <ul className="awards-list">
