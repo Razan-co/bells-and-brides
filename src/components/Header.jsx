@@ -14,8 +14,9 @@ const Header = () => {
     <header id="mainHeader">
       <div className="head-grid">
         <div className="logo text-center">
+
           <img src="/logo-BB.png" width="500" height="100" alt="logo" />
-          
+      
         </div>
     <div>
       <div className="logo-name">Bells & Brides</div>
