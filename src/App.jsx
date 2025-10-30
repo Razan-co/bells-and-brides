@@ -16,12 +16,11 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         {/* ✅ When visiting "/", redirect to /landing */}
-        <Route path="/" element={<Navigate to="/" replace />} />
 
         {/* ✅ Landing page inside Layout (so Header appears) */}
         <Route element={<Layout />}>
           <Route path="/" element={<GoogleLanding />} />
-          <Route path="/home" element={<Homepage />} />
+          <Route path="/homepage" element={<Homepage />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/portfolio" element={<Portfolio />} />
