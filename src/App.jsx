@@ -15,8 +15,6 @@ export default function App() {
     <>
       <ScrollToTop />
       <Routes>
-        {/* ✅ When visiting "/", redirect to /landing */}
-
         {/* ✅ Landing page inside Layout (so Header appears) */}
         <Route element={<Layout />}>
           <Route path="/" element={<GoogleLanding />} />

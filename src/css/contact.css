@@ -57,6 +57,43 @@
 .pink {
   color: #819A91;
 }
+.custom-date-input {
+  position: relative;
+  width: 100%;
+}
+
+.custom-date-input input[type="date"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: transparent; /* hide default dd-mm-yyyy text */
+  caret-color: #333;
+}
+
+/* Hide built-in date text when empty */
+.custom-date-input input[type="date"]::-webkit-datetime-edit {
+  color: transparent;
+}
+
+/* When a date is selected, show it normally */
+.custom-date-input input[type="date"]:valid::-webkit-datetime-edit {
+  color: #000;
+}
+
+/* Placeholder text */
+.date-placeholder {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 15px;
+  pointer-events: none;
+}
+
 
 .contact-form {
   flex: 2;
@@ -81,6 +118,13 @@
   border: 1px solid #ccc;
   font-size: 1rem;
   width: 100%;
+}
+
+.form-group input{
+  padding: 15px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width:49%;
 }
 
 textarea {
@@ -149,6 +193,11 @@ textarea {
     padding: 15px 30px;
   }
 
+  .form-group input{
+  padding: 15px;
+  width:100%;
+}
+
   .form-row {
     flex-direction: column;
     gap: 10px;
@@ -197,6 +246,7 @@ textarea {
     padding: 10px;
     font-size: 0.9rem;
   }
+
 
   .submit-btn {
     padding: 8px 16px;

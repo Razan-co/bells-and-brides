@@ -6,13 +6,15 @@ import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
 
 export default function GoogleLanding() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    city: "",
-    message: "",
-  });
+ const [formData, setFormData] = useState({
+  name: "",
+  mobile: "",
+  city: "",
+  eventDate: "",
+  eventType: "",
+  budget: "",
+});
+
   const [status, setStatus] = useState("");
 
   useEffect(() => {
@@ -30,42 +32,52 @@ export default function GoogleLanding() {
   }, []);
 
   // handle input
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setFormData({ ...formData, [name]: value });
+};
 
   // 🚀 handle submit - send to Google Sheet
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("⏳ Sending...");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setStatus("⏳ Sending...");
 
-    const SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbwL_9DyCoBlr5SP_K64W9M3vK1kP7IpfP4EMXHDD5orMdfKc7cSrlnjqcOguHnd8QKrfQ/exec";
+  const SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbxKpDrw9iT52__LVJmzKqAj-IR8gIxR7YeiOJIrkyzwS5hhw1ucgL0T0UNp5DPV5s4Hlw/exec";
 
-    try {
-      await fetch(SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors", // ✅ bypass CORS
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+  try {
+    const body = new URLSearchParams({
+      name: formData.name,
+      mobile: formData.mobile,
+      city: formData.city,
+      eventDate: formData.eventDate,
+      eventType: formData.eventType,
+      budget: formData.budget,
+    });
 
-      // Even though we can’t read the response, it still submits fine
-      setStatus("✅ Message Sent Successfully!");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        city: "",
-        message: "",
-      });
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      setStatus("❌ Failed to send. Please try again.");
-    }
-  };
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: body.toString(),
+    });
+
+    setStatus("✅ Message Sent Successfully!");
+    setFormData({
+      name: "",
+      mobile: "",
+      city: "",
+      eventDate: "",
+      eventType: "",
+      budget: "",
+    });
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    setStatus("❌ Failed to send. Please try again.");
+  }
+};
+
+
 
   return (
     <div className="google-landing">
@@ -129,73 +141,147 @@ export default function GoogleLanding() {
           Get Your Free Wedding Consultation 💍
         </h2>
 
-        <form
-          className="contact-form"
-          onSubmit={handleSubmit}
-          data-aos="fade-up"
-          data-aos-delay="200"
-          style={{ maxWidth: "600px", width: "100%" }}
-        >
-          <div className="form-row">
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Your Name"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Your Email"
-              required
-            />
-          </div>
+      <form
+  className="contact-form"
+  onSubmit={handleSubmit}
+  data-aos="fade-up"
+  data-aos-delay="200"
+  style={{ maxWidth: "600px", width: "100%" }}
+>
+  {/* Name & Mobile */}
+  <div className="form-row">
+    <input
+      type="text"
+      name="name"
+      value={formData.name}
+      onChange={handleChange}
+      placeholder="Your Name"
+      required
+    />
+    <input
+      type="text"
+      name="mobile"
+      value={formData.mobile}
+      onChange={handleChange}
+      placeholder="Mobile Number"
+      required
+    />
+  </div>
 
-          <div className="form-row">
-            <input
-              type="text"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="Your Number"
-              required
-            />
-            <input
-              type="text"
-              name="city"
-              value={formData.city}
-              onChange={handleChange}
-              placeholder="Your City"
-              required
-            />
-          </div>
+  {/* City & Event Date */}
+  <div className="form-row">
+    <input
+      type="text"
+      name="city"
+      value={formData.city}
+      onChange={handleChange}
+      placeholder="Your City"
+      required
+    />
 
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Tell us about your dream wedding"
-            rows="5"
-            required
-          ></textarea>
+<div className="custom-date-input">
+  <input
+    type="date"
+    name="eventDate"
+    value={formData.eventDate}
+    onChange={handleChange}
+    required
+  />
+  {!formData.eventDate && (
+    <span className="date-placeholder">Event Date</span>
+  )}
+</div>
 
-          <button
-            type="submit"
-            className="submit-btn"
-            data-aos="zoom-in"
-            data-aos-delay="300"
-          >
-            Send Message
-          </button>
+  </div>
 
-          {status && (
-            <p style={{ marginTop: "10px", textAlign: "center" }}>{status}</p>
-          )}
-        </form>
+  {/* Event Type */}
+<div style={{ marginBottom: "1.5rem" }}>
+  <label
+    style={{
+      color: "#070707ff",
+      fontWeight: "300",
+      display: "block",
+      marginTop:"20px",
+      marginBottom: "16px",
+      fontSize: "16px",
+    }}
+  >
+    Select Your Event Type:
+  </label>
+
+  <div
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: "20px 40px",
+      color: "#000000ff",
+      fontSize: "15px",
+    }}
+  >
+    {[
+      "Wedding",
+      "Engagement",
+      "Birthday Party",
+      "Corporate Party",
+      "Others",
+    ].map((type) => (
+      <label
+        key={type}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          cursor: "pointer",
+        }}
+      >
+        <input
+          type="radio"
+          name="eventType"
+          value={type}
+          checked={formData.eventType === type}
+          onChange={handleChange}
+          required
+          style={{
+            accentColor: "#819A91", // 🎨 pink theme accent color (modern browsers)
+            width: "18px",
+            height: "18px",
+            cursor: "pointer",
+          }}
+        />
+        {type}
+      </label>
+    ))}
+  </div>
+</div>
+
+
+  {/* Estimated Budget */}
+  <div className="form-group">
+    <input
+      type="text"
+      name="budget"
+      value={formData.budget}
+      onChange={handleChange}
+      placeholder="Estimated Budget"
+      required
+    />
+  </div>
+
+  {/* Submit Button */}
+  <button
+    type="submit"
+    className="submit-btn"
+    data-aos="zoom-in"
+    data-aos-delay="300"
+  >
+    Send Message
+  </button>
+
+  {status && (
+    <p style={{ marginTop: "10px", textAlign: "center" }}>{status}</p>
+  )}
+</form>
+
       </section>
 
       {/* Footer */}

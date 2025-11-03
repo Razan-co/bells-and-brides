@@ -1,63 +1,82 @@
-import React, { useEffect, useRef, useState } from 'react';
-import '../css/contact.css';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { useEffect, useState } from "react";
+import "../css/contact.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Contact() {
-  const form = useRef();
-  const [sending, setSending] = useState(false);
-  const [resultMsg, setResultMsg] = useState('');
+  const [formData, setFormData] = useState({
+    name: "",
+    mobile: "",
+    city: "",
+    eventDate: "",
+    eventType: "",
+    budget: "",
+  });
 
-  // ⚙️ Initialize AOS
+  const [status, setStatus] = useState("");
+  const [sending, setSending] = useState(false);
+
   useEffect(() => {
-    AOS.init({ duration: 1000, offset: 100, easing: 'ease-in-out', once: true });
-    document.body.classList.add('no-scroll');
-    return () => document.body.classList.remove('no-scroll');
+    AOS.init({ duration: 1000, offset: 100, easing: "ease-in-out", once: true });
+    document.body.classList.add("no-scroll");
+    return () => document.body.classList.remove("no-scroll");
   }, []);
 
-  // 🚀 Replace EmailJS with Google Sheet submission
-// 🚀 Send data to Google Sheet (works with Apps Script + no CORS issue)
-const sendToGoogleSheet = async (e) => {
-  e.preventDefault();
-  setSending(true);
-  setResultMsg('');
-
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwL_9DyCoBlr5SP_K64W9M3vK1kP7IpfP4EMXHDD5orMdfKc7cSrlnjqcOguHnd8QKrfQ/exec';
- const formData = {
-    name: form.current.name.value,
-    email: form.current.email.value,
-    phone: form.current.phone.value,
-    city: form.current.city.value,
-    message: form.current.message.value,
+  // ✅ Handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  try {
-    const response = await fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors', // ✅ Important: lets browser send to Apps Script
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+  // 🚀 Submit form to Google Sheet (using working URLSearchParams)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSending(true);
+    setStatus("⏳ Sending...");
 
-    // Even though no-cors hides response, data still saves
-    setResultMsg('✅ Message sent successfully!');
-    form.current.reset();
-  } catch (error) {
-    console.error('Error:', error);
-    setResultMsg('❌ Failed to send message. Please try again.');
-  } finally {
-    setSending(false);
-  }
-};
+    const SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbxKpDrw9iT52__LVJmzKqAj-IR8gIxR7YeiOJIrkyzwS5hhw1ucgL0T0UNp5DPV5s4Hlw/exec";
 
+    try {
+      const body = new URLSearchParams({
+        name: formData.name,
+        mobile: formData.mobile,
+        city: formData.city,
+        eventDate: formData.eventDate,
+        eventType: formData.eventType,
+        budget: formData.budget,
+      });
 
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString(),
+      });
+
+      setStatus("✅ Message Sent Successfully!");
+      setFormData({
+        name: "",
+        mobile: "",
+        city: "",
+        eventDate: "",
+        eventType: "",
+        budget: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setStatus("❌ Failed to send. Please try again.");
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <div className="no-scroll">
       <div className="contact-section">
-        <h2 className="title" data-aos="fade-down">Contact Us</h2>
+        <h2 className="title" data-aos="fade-down">
+          Contact Us
+        </h2>
 
         <div className="contact-container">
           {/* Left Side */}
@@ -66,7 +85,7 @@ const sendToGoogleSheet = async (e) => {
               <i className="fas fa-map-marker-alt icon pink" data-aos="zoom-in" data-aos-delay="200"></i>
               <div>
                 <h4>Location</h4>
-                <p>Kattur Sadayappan St, Chennai, TamilNadu, 600003</p>
+                <p>Kattur Sadayappan St, Chennai, Tamil Nadu, 600003</p>
               </div>
             </div>
 
@@ -87,23 +106,124 @@ const sendToGoogleSheet = async (e) => {
             </div>
           </div>
 
-          {/* Right Side — Form */}
+          {/* Right Side — Wedding Inquiry Form */}
           <form
-            ref={form}
-            onSubmit={sendToGoogleSheet}
+            onSubmit={handleSubmit}
             className="contact-form"
             data-aos="fade-left"
             data-aos-delay="200"
           >
+            {/* Name & Mobile */}
             <div className="form-row">
-              <input type="text" name="name" placeholder="Your Name" required />
-              <input type="email" name="email" placeholder="Your Email" required />
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Your Name"
+                required
+              />
+              <input
+                type="text"
+                name="mobile"
+                value={formData.mobile}
+                onChange={handleChange}
+                placeholder="Mobile Number"
+                required
+              />
             </div>
+
+            {/* City & Event Date */}
             <div className="form-row">
-              <input type="text" name="phone" placeholder="Your Number" />
-              <input type="text" name="city" placeholder="Your City" />
+              <input
+                type="text"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                placeholder="Your City"
+                required
+              />
+            <div className="custom-date-input">
+  <input
+    type="date"
+    name="eventDate"
+    value={formData.eventDate}
+    onChange={handleChange}
+    required
+  />
+  {!formData.eventDate && (
+    <span className="date-placeholder">Event Date</span>
+  )}
+</div>
             </div>
-            <textarea name="message" placeholder="Message" rows="5" required />
+
+            {/* Event Type */}
+            <div style={{ marginBottom: "1.5rem" }}>
+              <label
+                style={{
+                  color: "#070707",
+                  fontWeight: "300",
+                  display: "block",
+                  marginTop: "20px",
+                  marginBottom: "16px",
+                  fontSize: "16px",
+                }}
+              >
+                Select Your Event Type:
+              </label>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "20px 40px",
+                  color: "#000",
+                  fontSize: "15px",
+                }}
+              >
+                {["Wedding", "Engagement", "Birthday Party", "Corporate Party", "Others"].map(
+                  (type) => (
+                    <label
+                      key={type}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <input
+                        type="radio"
+                        name="eventType"
+                        value={type}
+                        checked={formData.eventType === type}
+                        onChange={handleChange}
+                        required
+                        style={{
+                          accentColor: "#819A91",
+                          width: "18px",
+                          height: "18px",
+                          cursor: "pointer",
+                        }}
+                      />
+                      {type}
+                    </label>
+                  )
+                )}
+              </div>
+            </div>
+
+            {/* Estimated Budget */}
+            <div className="form-group">
+              <input
+                type="text"
+                name="budget"
+                value={formData.budget}
+                onChange={handleChange}
+                placeholder="Estimated Budget"
+                required
+              />
+            </div>
+
             <button
               type="submit"
               className="submit-btn"
@@ -111,10 +231,10 @@ const sendToGoogleSheet = async (e) => {
               data-aos-delay="300"
               disabled={sending}
             >
-              {sending ? 'Sending...' : 'Send Message'}
+              {sending ? "Sending..." : "Send Message"}
             </button>
 
-            {resultMsg && <p className="result-msg">{resultMsg}</p>}
+            {status && <p className="result-msg">{status}</p>}
           </form>
         </div>
       </div>
