@@ -14,17 +14,16 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
-      <Routes>
-        {/* ✅ Landing page inside Layout (so Header appears) */}
+        <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<GoogleLanding />} />
           <Route path="/homepage" element={<Homepage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/venues" element={<Venues />} />
-          <Route path="/foods" element={<Foods />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/about-bells-n-brides" element={<About />} />
+          <Route path="/wedding-planning-services-bangalore" element={<Services />} />
+          <Route path="/portfolio-wedding-planners-bangalore" element={<Portfolio />} />
+          <Route path="/wedding-venues-in-bangalore" element={<Venues />} />
+          <Route path="/wedding-caterers-bangalore" element={<Foods />} />
+          <Route path="/contact-bells-n-brides" element={<Contact />} />
         </Route>
       </Routes>
     </>

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Title, Meta } from "react-head";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../css/portfolio.css';
@@ -65,6 +66,14 @@ export default function Portfolio() {
   ];
 
   return (
+    <>
+     <Title>Bells N Brides Portfolio | Top Wedding Planning Projects in Bangalore</Title>
+      <Meta
+        name="description"
+        content="Take a look at Bells N Brides’ portfolio of weddings in Bangalore — showcasing creative themes, elegant setups, and memorable celebrations crafted with passion."
+      />
+      <Meta property="og:url" content="https://www.bellsnbrides.com/portfolio-wedding-planners-bangalore" />
+
     <section className="portfolio">
       <h2 className="portfolio-title" data-aos="fade-down">Our Portfolio</h2>
 
@@ -146,5 +155,6 @@ export default function Portfolio() {
         </div>
       </div>
     </section>
+    </>
   );
 }

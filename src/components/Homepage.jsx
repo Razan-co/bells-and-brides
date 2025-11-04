@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Title, Meta } from "react-head";
 import "../css/main.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -63,6 +64,14 @@ export default function Homepage() {
   }, [currentIndex]);
 
   return (
+    <>
+    <Title>Wedding Organizers in Bangalore | Bells N Brides – Luxury Wedding Planners</Title>
+      <Meta
+        name="description"
+        content="Bells N Brides is one of the best wedding organizers in Bangalore offering full-service wedding planning, decoration, and catering for luxury celebrations."
+      />
+      <Meta property="og:url" content="https://www.bellsnbrides.com/" />
+
     <div className="carousel-wrapper">
    <div className="carousel-container" ref={carouselRef}>
         {pages.map((page, idx) => (
@@ -220,9 +229,9 @@ export default function Homepage() {
           <div className="footer-middle">
             <h3>Quick Links</h3>
             <ul>
-              <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/services">Our Services</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/about-bells-n-brides">About Us</Link></li>
+              <li><Link to="/wedding-planning-services-bangalore">Our Services</Link></li>
+              <li><Link to="/contact-bells-n-brides">Contact</Link></li>
             </ul>
           </div>
           <div className="footer-right">
@@ -239,8 +248,11 @@ export default function Homepage() {
             </div>
           </div>
         </div>
-        <p className="footer-copy">© 2025 Bells and Brides. All rights reserved.</p>
+       <p className="footer-copy">
+  © {new Date().getFullYear()} Bells and Brides. All rights reserved.
+</p>
       </footer>
     </div>
+    </>
   );
 }

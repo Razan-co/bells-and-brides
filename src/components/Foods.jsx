@@ -1,6 +1,7 @@
 // Food jsx
 
 import React from 'react';
+import { Title, Meta } from "react-head";
 import '../css/food.css';
 
 const menuList = [
@@ -73,6 +74,13 @@ const menuList = [
 export default function Food() {
   return (
     <>
+          <Title>Wedding Caterers in Bangalore | Bells N Brides Food & Catering Services</Title>
+      <Meta
+        name="description"
+        content="Bells N Brides offers premium wedding catering services in Bangalore with authentic South Indian, North Indian, and international cuisines for every occasion."
+      />
+      <Meta property="og:url" content="https://www.bellsnbrides.com/wedding-caterers-bangalore" />
+
       <div className='menu'>
         <h1>Menu Card</h1>
       </div>

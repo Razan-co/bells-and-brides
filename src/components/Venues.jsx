@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { Title, Meta } from "react-head";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -36,6 +37,14 @@ export default function Venues() {
   };
 
   return (
+    <>
+     <Title>Best Wedding Venues in Bangalore | Bells N Brides Wedding Planners</Title>
+      <Meta
+        name="description"
+        content="Discover the most beautiful wedding venues in Bangalore with Bells N Brides — luxury resorts, outdoor lawns, and elegant banquet halls for perfect celebrations."
+      />
+      <Meta property="og:url" content="https://www.bellsnbrides.com/wedding-venues-in-bangalore" />
+
     <div className="venues-wrapper">
       <h2 className="venues-title">Explore Our Venues</h2>
 
@@ -76,5 +85,6 @@ export default function Venues() {
            {selectedCity === "Mumbai" && <Mumbai />} 
       </div>
     </div>
+    </>
   );
 }

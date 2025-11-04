@@ -297,13 +297,13 @@ const handleSubmit = async (e) => {
             <h3>Quick Links</h3>
             <ul>
               <li>
-                <Link to="/about">About Us</Link>
+                <Link to="/about-bells-n-brides">About Us</Link>
               </li>
               <li>
-                <Link to="/services">Our Services</Link>
+                <Link to="/wedding-planning-services-bangalore">Our Services</Link>
               </li>
               <li>
-                <Link to="/contact">Contact</Link>
+                <Link to="/contact-bells-n-brides">Contact</Link>
               </li>
             </ul>
           </div>
@@ -329,7 +329,9 @@ const handleSubmit = async (e) => {
             </div>
           </div>
         </div>
-        <p className="footer-copy">© 2025 Bells and Brides. All rights reserved.</p>
+       <p className="footer-copy">
+  © {new Date().getFullYear()} Bells and Brides. All rights reserved.
+</p>
       </footer>
     </div>
   );

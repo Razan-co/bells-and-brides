@@ -1,4 +1,5 @@
 import React from 'react';
+import { Title, Meta } from "react-head";
 import '../css/about.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -13,6 +14,14 @@ export default function About() {
     });
   }, []);
   return (
+    <>
+       <Title>About Bells N Brides | Leading Wedding Planning Company in Bangalore</Title>
+      <Meta
+        name="description"
+        content="Learn about Bells N Brides — among the top wedding planning companies in Bangalore, known for elegant decor, flawless coordination, and unforgettable events."
+      />
+      <Meta property="og:url" content="https://www.bellsnbrides.com/about-bells-n-brides" />
+
     <div className="about">
       <div className="about-head" data-aos="fade-down">
         <h1 className="title">About Us</h1>
@@ -89,5 +98,6 @@ export default function About() {
       </div>
 
     </div>
+    </>
   );
 }

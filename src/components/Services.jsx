@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Title, Meta } from "react-head";
 import '../css/services.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -50,6 +51,14 @@ export default function ServicesSection() {
   ];
 
   return (
+    <>
+         <Title>Wedding Planning Services in Bangalore | Bells N Brides Wedding Organizers</Title>
+      <Meta
+        name="description"
+        content="Explore Bells N Brides’ wedding planning services in Bangalore — from decor, catering, and entertainment to complete event management for your dream wedding."
+      />
+      <Meta property="og:url" content="https://www.bellsnbrides.com/wedding-planning-services-bangalore" />
+
     <section className={sectionClass}>
       <h2 className="services-title">Our Services</h2>
       <p className="services-subtext">
@@ -78,5 +87,6 @@ export default function ServicesSection() {
         })}
       </div>
     </section>
+    </>
   );
 }

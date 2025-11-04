@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Title, Meta } from "react-head";
 import "../css/contact.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -72,6 +73,14 @@ function Contact() {
   };
 
   return (
+    <>
+        <Title>Contact Bells N Brides | Top Wedding Planning Company in Bangalore</Title>
+      <Meta
+        name="description"
+        content="Contact Bells N Brides — trusted wedding planners and organizers in Bangalore. Call or message us today to plan your dream wedding with expert professionals."
+      />
+      <Meta property="og:url" content="https://www.bellsnbrides.com/contact-bells-n-brides" />
+
     <div className="no-scroll">
       <div className="contact-section">
         <h2 className="title" data-aos="fade-down">
@@ -239,6 +248,7 @@ function Contact() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
